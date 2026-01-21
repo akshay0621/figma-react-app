@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+}
+
+@layer base {
+  html, body {
+    @apply overflow-hidden h-screen;
+  }
+
+  body {
+    @apply antialiased text-gray-900;
+    background-image: url('./assets/illustration.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #2563EB;
+  }
+}
