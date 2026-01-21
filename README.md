@@ -14,8 +14,8 @@ This project converts a Figma design into a fully functional React application f
 
 ## 🚀 Live Demo
 
-- **Local Development**: `http://localhost:5173`
-- **Deployed URL**: _(To be added after deployment)_
+- **Deployed URL**: [https://figma-react-app-registration.netlify.app/](https://figma-react-app-registration.netlify.app/)
+- **GitHub Repository**: [https://github.com/akshay0621/figma-react-app](https://github.com/akshay0621/figma-react-app)
 
 ## 📋 Features
 
