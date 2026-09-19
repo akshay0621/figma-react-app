@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark *));
+
 @theme {
   --color-primary: #2563EB;
   --color-primary-hover: #1D4ED8;
@@ -11,12 +13,18 @@
   }
 
   body {
-    @apply antialiased text-gray-900;
+    @apply antialiased text-gray-900 dark:text-gray-100;
     background-image: url('./assets/illustration.png');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #2563EB;
+  }
+
+  /* Dashboard pages override the registration background */
+  .dark body,
+  body:has(.dashboard-active) {
+    background-image: none;
   }
 }

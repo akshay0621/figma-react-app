@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SplitLayout } from './components/layout/SplitLayout';
 import { SuccessOverlay } from './components/steps/SuccessOverlay';
 import { Notification } from './components/ui/Notification';
@@ -6,6 +8,7 @@ import { FormWizardCard } from './components/wizard/FormWizardCard';
 import { useFormWizard } from './lib/useFormWizard';
 import { usePageFlipAnimation } from './lib/usePageFlipAnimation';
 import { step5Schema } from './lib/validation';
+import { useAuth } from './context/AuthContext';
 
 function App() {
   const {
@@ -24,8 +27,23 @@ function App() {
   } = useFormWizard();
 
   const direction = usePageFlipAnimation(step);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  // Check if step 5 is valid (passwords match and requirements met)
+  // When registration completes (step 6), log in and navigate to dashboard
+  useEffect(() => {
+    if (step === 6) {
+      login({
+        accountType: formData.accountType || 'personal',
+        countryCode: formData.countryCode,
+        phone: formData.phone,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+      });
+      const timer = setTimeout(() => navigate('/dashboard'), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [step, formData, login, navigate]);
   const isStep5Valid = step === 5
     ? step5Schema.safeParse({ password: formData.password, confirmPassword: formData.confirmPassword }).success
     : true;
